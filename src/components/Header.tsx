@@ -1,9 +1,9 @@
-import React from 'react'
 import styled from 'styled-components'
+import logo from './../HN_logo.png'
+import './../App.css'
 
 interface Props {
   title: string
-  children: React.ReactNode
 }
 
 const HeaderLayout = styled.header`
@@ -27,9 +27,16 @@ const HeaderTitle = styled.h2`
   flex-grow: 1;
 `
 
-const Header = ({ title, children }: Props) => (
+const Header = ({ title }: Props) => (
   <HeaderLayout>
-    {children}
+    <a
+      className="App-logo"
+      href="https://news.ycombinator.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img src={logo} className="App-logo" alt="logo" />
+    </a>
     <HeaderTitle>{title}</HeaderTitle>
   </HeaderLayout>
 )

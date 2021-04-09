@@ -1,7 +1,5 @@
 import styled from 'styled-components'
-import logo from './HN_logo.png'
 import Header from './components/Header'
-import './App.css'
 
 const Main = styled.main`
   text-align: center;
@@ -24,16 +22,7 @@ const Container = styled.section`
 function App() {
   return (
     <Main>
-      <Header title="HackerNews_List">
-        <a
-          className="App-logo"
-          href="https://news.ycombinator.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={logo} className="App-logo" alt="logo" />
-        </a>
-      </Header>
+      <Header title="HackerNews_List" />
       <Container>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

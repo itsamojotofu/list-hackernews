@@ -1,9 +1,21 @@
-// import React, { , useTransition } from 'react';
-// import styled from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
 import instance from './../axios'
 
 // interface Props {
 // }
+
+const Row = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`
+
+const Title = styled.div`
+  font-size: 20px:
+  flex-wrap: align-self: center;
+  flex: 1;
+`
 
 interface Story {
   id: number
@@ -14,7 +26,7 @@ interface Story {
   kids: []
 }
 
-export const fetchTopStories = async (count: number): Promise<Story[]> => {
+const fetchTopStories = async (count: number): Promise<Story[]> => {
   const ids = await instance
     .get(`/topstories.json?print=pretty`)
     .then((res: { json: () => any }) => res.json())
@@ -31,3 +43,18 @@ export const fetchTopStories = async (count: number): Promise<Story[]> => {
   console.group(stories)
   return stories
 }
+
+export const Story = React.memo((props: Story) => {
+  const { title, by, time } = props
+  // const [startTransition, isPending] = React.useTransition({
+  //   timeoutMs: 2000
+  // });
+
+  return (
+    <Row>
+      <Title>{title}</Title>
+      <Title>{by}</Title>
+      <Title>{time}</Title>
+    </Row>
+  )
+})

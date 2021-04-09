@@ -24,7 +24,7 @@ const Container = styled.section`
 function App() {
   return (
     <Main>
-      <Header title="HackerNews List">
+      <Header title="HackerNews_List">
         <a
           className="App-logo"
           href="https://news.ycombinator.com/"

@@ -10,7 +10,7 @@ const HeaderLayout = styled.header`
   background-color: #282c34;
   min-width: 100vw;
   height: 8vh;
-  min-height: 50px;
+  min-height: 60px;
   display: flex;
   position: sticky;
   top: 0;
@@ -25,7 +25,7 @@ const HeaderLayout = styled.header`
 `
 
 const HeaderTitle = styled.h2`
-  flex-grow: 1;
+  flex-grow: 2;
   margin: 10px;
 `
 

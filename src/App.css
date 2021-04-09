@@ -1,5 +1,8 @@
 .App-logo {
-  height: 40px;
+  height: 6vh;
+  min-height: 40px;
+  position: absolute;
+  top: 4px;
 }
 
 .App-header {

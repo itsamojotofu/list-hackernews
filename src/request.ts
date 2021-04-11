@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const FetchStories = (url: string) => {
+const useStories = (url: string) => {
   const [ids, setIds] = useState<number[]>([])
 
   useEffect(() => {
@@ -15,4 +15,4 @@ const FetchStories = (url: string) => {
   return ids
 }
 
-export default FetchStories
+export default useStories

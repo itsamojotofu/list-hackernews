@@ -3,11 +3,10 @@ import Loader from 'react-loader-spinner'
 const Loading = () => {
   return (
     <Loader
-      type="Circles"
+      type="ThreeDots"
       color="#00BFFF"
-      margin-top={200}
-      height={200}
-      width={200}
+      height={80}
+      width={80}
       timeout={2000}
     />
   )

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 interface Props {
   width: string
@@ -6,7 +7,7 @@ interface Props {
   margin: string
 }
 
-const StoryLoader = (props: Props) => {
+export const StoryLoader = (props: Props) => {
   const { width, height, margin } = props
 
   const LoaderContainer = styled.div`
@@ -17,7 +18,13 @@ const StoryLoader = (props: Props) => {
     font-size: 1.5em;
   `
 
-  return <LoaderContainer>Loading . . .</LoaderContainer>
+  return (
+    <LoaderContainer>
+      <SkeletonTheme color="#baab70" highlightColor="#c9bc87">
+        <Skeleton count={2} height={30} />
+      </SkeletonTheme>
+    </LoaderContainer>
+  )
 }
 
 export default StoryLoader

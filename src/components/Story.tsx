@@ -64,7 +64,7 @@ const LinkedIcon = styled.a`
   transition-timing-function: ease;
   transition-delay: 0s;
   &:hover {
-    color: indianRed;
+    color: #282c34;
     text-decoration: inherit;
   }
 `
@@ -142,6 +142,7 @@ const Story = (props: Props) => {
       <StoryIndex>{index}</StoryIndex>
       {story ? (
         <StoryBody>
+          {/* conditional to remove anchor when url is blank */}
           {story.url !== '' ? (
             <StoryTitle
               href={story.url}
@@ -160,25 +161,42 @@ const Story = (props: Props) => {
               {story.by}
               {' | '} {timestampConversion(story.time)}
             </StoryInfo>
-            <IconContext.Provider
-              value={{
-                style: {
-                  width: '50',
-                  fontSize: '2.5em',
-                  padding: '0 0 5px',
-                },
-              }}
-            >
-              <div>
-                <LinkedIcon
-                  href={story.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+            {/* conditional to remove anchor when url is blank */}
+            {story.url !== '' ? (
+              <IconContext.Provider
+                value={{
+                  style: {
+                    width: '50',
+                    fontSize: '2.5em',
+                    padding: '0 0 5px',
+                  },
+                }}
+              >
+                <div>
+                  <LinkedIcon
+                    href={story.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <RiExternalLinkLine />
+                  </LinkedIcon>
+                </div>
+              </IconContext.Provider>
+            ) : (
+              <IconContext.Provider
+                value={{
+                  style: {
+                    width: '50',
+                    fontSize: '2.5em',
+                    padding: '0 0 5px',
+                  },
+                }}
+              >
+                <div>
                   <RiExternalLinkLine />
-                </LinkedIcon>
-              </div>
-            </IconContext.Provider>
+                </div>
+              </IconContext.Provider>
+            )}
           </SecondRow>
         </StoryBody>
       ) : (

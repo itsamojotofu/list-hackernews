@@ -138,7 +138,7 @@ const Story = (props: Props) => {
           </StoryInfo>
         </StoryBody>
       ) : (
-        <StoryLoader width="100%" height="100%" margin="10px 0px" />
+        <StoryLoader width="100%" height="100%" margin="0 auto 5px" />
       )}
     </StoryContainer>
   )

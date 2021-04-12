@@ -8,7 +8,6 @@ interface Props {
 
 const HeaderLayout = styled.header`
   background-color: #282c34;
-  min-width: 90vw;
   height: 8vh;
   min-height: 60px;
   display: flex;

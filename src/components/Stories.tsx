@@ -3,20 +3,26 @@ import styled from 'styled-components'
 import useStories from '../request'
 import Story from './Story'
 
+const Main = styled.main`
+  text-align: center;
+  background-color: #282c34;
+`
+
 const StoriesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 `
 
 const LoadButton = styled.button`
-  width: 130px;
-  height: 65px;
+  width: 200px;
+  height: 50px;
   margin: 15px auto;
-  color: #4274d3;
+  color: #286aa6;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.15rem;
-  line-height: 65px;
+  line-height: 50px;
   text-transform: uppercase;
   text-align: center;
   position: relative;
@@ -40,16 +46,18 @@ const Stories = () => {
   )
 
   return (
-    <StoriesContainer>
-      {StoryIds.slice(0, (i + 1) * LoadLength).map(
-        (id: number, index: number) => (
-          <Story index={index + 1} id={id} />
-        ),
-      )}
+    <Main>
+      <StoriesContainer>
+        {StoryIds.slice(0, (i + 1) * LoadLength).map(
+          (id: number, index: number) => (
+            <Story index={index + 1} id={id} />
+          ),
+        )}
+      </StoriesContainer>
       <LoadButton onClick={LoadClick} disabled={isPending}>
         {isPending ? 'Loading ...' : 'Load More'}
       </LoadButton>
-    </StoriesContainer>
+    </Main>
   )
 }
 

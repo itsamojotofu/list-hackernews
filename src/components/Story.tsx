@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import StoryLoader from './StoryLoader'
+import { IconContext } from 'react-icons'
+import { RiExternalLinkLine } from 'react-icons/ri'
 
 const StoryContainer = styled.div`
   width: 100%;
@@ -9,7 +11,7 @@ const StoryContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px 0;
-  padding: 15px 20px 10px 5px;
+  padding: 15px 20px 5px 5px;
 `
 
 const StoryIndex = styled.span`
@@ -23,7 +25,6 @@ const StoryBody = styled.div`
   text-align: left;
   display: flex;
   flex-direction: column;
-  margin-bottom: 5px;
 `
 const StoryTitle = styled.a`
   color: white;
@@ -42,12 +43,34 @@ const StoryTitleURL = styled.span`
   }
 `
 
+const SecondRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0 0;
+`
+
 const StoryInfo = styled.div`
   width: calc(100% - 50px);
   font-size: 1em;
   background-color: #afa16a;
-  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 3px 0 3px 10px;
+`
+
+const LinkedIcon = styled.a`
+  color: white;
+  transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  &:hover {
+    color: indianRed;
+    text-decoration: inherit;
+  }
+`
+
+const Adjuster = styled.div`
+  border-bottom: 10px solid #286aa6;
 `
 
 export interface StoryData {
@@ -131,14 +154,38 @@ const Story = (props: Props) => {
           ) : (
             <StoryTitle>{story.title}</StoryTitle>
           )}
-          <StoryInfo>
-            {'By '}
-            {story.by}
-            {' | '} {timestampConversion(story.time)}
-          </StoryInfo>
+          <SecondRow>
+            <StoryInfo>
+              {'By '}
+              {story.by}
+              {' | '} {timestampConversion(story.time)}
+            </StoryInfo>
+            <IconContext.Provider
+              value={{
+                style: {
+                  width: '50',
+                  fontSize: '2.5em',
+                  padding: '0 0 5px',
+                },
+              }}
+            >
+              <div>
+                <LinkedIcon
+                  href={story.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <RiExternalLinkLine />
+                </LinkedIcon>
+              </div>
+            </IconContext.Provider>
+          </SecondRow>
         </StoryBody>
       ) : (
-        <StoryLoader width="100%" height="100%" margin="0 auto 5px" />
+        <StoryBody>
+          <StoryLoader width="100%" height="100%" margin="0 auto 5px" />
+          <Adjuster />
+        </StoryBody>
       )}
     </StoryContainer>
   )

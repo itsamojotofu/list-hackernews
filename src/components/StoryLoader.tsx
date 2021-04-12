@@ -14,8 +14,6 @@ export const StoryLoader = (props: Props) => {
     width: ${width};
     height: ${height};
     margin: ${margin};
-    color: white;
-    font-size: 1.5em;
   `
 
   return (

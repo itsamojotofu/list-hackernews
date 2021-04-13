@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 import styled from 'styled-components'
 import useStories from '../request'
 import Loading from './Loader'
@@ -20,30 +20,21 @@ const StoriesContainer = styled.div`
   min-height: 100vh;
 `
 
-const LoadButton = styled.button`
-  width: 200px;
-  height: 50px;
-  margin: 15px auto;
-  color: #286aa6;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.15em;
-  line-height: 50px;
-  text-transform: uppercase;
-  text-align: center;
-  position: relative;
-  cursor: pointer;
-`
-
 const Stories = () => {
   const LoadLength: number = 100
-  const [i, nextLoad] = React.useState<number>(0)
+  const [i, nextLoad] = useState<number>(0)
+  const [hasMore, setHasMore] = useState(true)
   const StoryIds: number[] = useStories(
     `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`,
   )
-  const LoadClick = () => {
+  const LoadMore = () => {
     startTransition(() => {
       nextLoad((i: number) => i + 1)
     })
+    if (i == 4) {
+      setHasMore(false)
+      return
+    }
   }
 
   const SUSPENSE_CONFIG: any = { timeoutMs: 2000 }
@@ -54,14 +45,10 @@ const Stories = () => {
   return (
     <Main>
       <InfiniteScroll
-        loadMore={LoadClick}
-        hasMore={true}
+        loadMore={LoadMore}
+        hasMore={hasMore}
         initialLoad={false}
-        loader={
-          <LoadButton onClick={LoadClick} disabled={isPending}>
-            {isPending ? 'Loading ...' : 'Load More'}
-          </LoadButton>
-        }
+        loader={<div>{isPending ? <Loading /> : null}</div>}
       >
         <StoriesContainer>
           {StoryIds.slice(0, (i + 1) * LoadLength).map(

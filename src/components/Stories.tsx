@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import useStories from '../request'
-// import Story from './Story'
 import Loading from './Loader'
+import InfiniteScroll from 'react-infinite-scroller'
 
 // await loading stories for 0.5 seconds to make the workings of Suspense be visible.
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -45,6 +45,7 @@ const Stories = () => {
       nextLoad((i: number) => i + 1)
     })
   }
+
   const SUSPENSE_CONFIG: any = { timeoutMs: 2000 }
   const [startTransition, isPending] = React.unstable_useTransition(
     SUSPENSE_CONFIG,
@@ -52,18 +53,26 @@ const Stories = () => {
 
   return (
     <Main>
-      <StoriesContainer>
-        {StoryIds.slice(0, (i + 1) * LoadLength).map(
-          (id: number, index: number) => (
-            <Suspense fallback={<Loading />}>
-              <Story index={index + 1} id={id} />
-            </Suspense>
-          ),
-        )}
-      </StoriesContainer>
-      <LoadButton onClick={LoadClick} disabled={isPending}>
-        {isPending ? 'Loading ...' : 'Load More'}
-      </LoadButton>
+      <InfiniteScroll
+        loadMore={LoadClick}
+        hasMore={true}
+        initialLoad={false}
+        loader={
+          <LoadButton onClick={LoadClick} disabled={isPending}>
+            {isPending ? 'Loading ...' : 'Load More'}
+          </LoadButton>
+        }
+      >
+        <StoriesContainer>
+          {StoryIds.slice(0, (i + 1) * LoadLength).map(
+            (id: number, index: number) => (
+              <Suspense fallback={<Loading />}>
+                <Story index={index + 1} id={id} />
+              </Suspense>
+            ),
+          )}
+        </StoriesContainer>
+      </InfiniteScroll>
     </Main>
   )
 }

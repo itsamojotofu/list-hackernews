@@ -1,17 +1,11 @@
-import { lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import Header from './components/Header'
-import Loading from './components/Loader'
-
-// await loading stories for 0.5 seconds to demonstrate the workings of Suspense.
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-const Stories = lazy(() =>
-  sleep(500).then(() => import('./components/Stories')),
-)
+import Stories from './components/Stories'
+import ScrollUp from './components/ScrollUp'
 
 const Main = styled.main`
   text-align: center;
-  width: 100vw;
+  width: 100%;
   min-width: 400px;
   min-height: 100vh;
   background-color: #282c34;
@@ -24,6 +18,13 @@ const Container = styled.section`
   overflow: auto;
   padding: 30px;
   background-color: #282c34;
+  @media (max-width: 1024px) {
+    width: 80vw;
+  }
+  @media (max-width: 599px) {
+    width: 90vw;
+    font-size: 0.8em;
+  }
 `
 
 const App = () => {
@@ -31,10 +32,9 @@ const App = () => {
     <Main>
       <Header title="HackerNews List" />
       <Container>
-        <Suspense fallback={<Loading />}>
-          <Stories />
-        </Suspense>
+        <Stories />
       </Container>
+      <ScrollUp />
     </Main>
   )
 }

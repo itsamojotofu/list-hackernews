@@ -1,23 +1,20 @@
 import styled from 'styled-components'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
-interface Props {
-  width: string
-  height: string
-  margin: string
-}
-
-const StoryLoader = (props: Props) => {
-  const { width, height, margin } = props
-
-  const LoaderContainer = styled.div`
-    width: ${width};
-    height: ${height};
-    margin: ${margin};
-    color: white;
-    font-size: 1.5em;
-  `
-
-  return <LoaderContainer>Loading . . .</LoaderContainer>
+const LoaderContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 0 auto 5px;
+`
+// Loader for each story
+export const StoryLoader = () => {
+  return (
+    <LoaderContainer>
+      <SkeletonTheme color="#baab70" highlightColor="#c9bc87">
+        <Skeleton count={2} height={30} />
+      </SkeletonTheme>
+    </LoaderContainer>
+  )
 }
 
 export default StoryLoader

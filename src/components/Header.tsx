@@ -29,7 +29,6 @@ const HeaderTitle = styled.h2`
 const Header = ({ title }: Props) => (
   <HeaderLayout>
     <a
-      className="App-logo"
       href="https://news.ycombinator.com/"
       target="_blank"
       rel="noopener noreferrer"

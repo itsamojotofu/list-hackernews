@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 import styled from 'styled-components'
 import useStories from '../request'
-import Story from './Story'
+import InfiniteScroll from 'react-infinite-scroller'
+import Loading from './Loading'
+import Loaded from './Loaded'
+
+// await loading stories for 0.5 seconds to make the workings of Suspense be visible.
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+const Story = lazy(() => sleep(500).then(() => import('./Story')))
 
 const Main = styled.main`
   text-align: center;
@@ -15,48 +21,63 @@ const StoriesContainer = styled.div`
   min-height: 100vh;
 `
 
-const LoadButton = styled.button`
-  width: 200px;
-  height: 50px;
-  margin: 15px auto;
-  color: #286aa6;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.15rem;
-  line-height: 50px;
-  text-transform: uppercase;
-  text-align: center;
-  position: relative;
-  cursor: pointer;
+const BottomBox = styled.div`
+  height: 100px;
+  padding: 30px;
+`
+
+const EndMessage = styled.h1`
+  font-size: 2em;
+  font-weight: 500;
+  color: white;
 `
 
 const Stories = () => {
-  const LoadLength: number = 100
-  const [i, nextLoad] = React.useState<number>(0)
-  const StoryIds: number[] = useStories(
-    `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`,
-  )
-  const LoadClick = () => {
-    startTransition(() => {
-      nextLoad((i: number) => i + 1)
-    })
-  }
-  const SUSPENSE_CONFIG: any = { timeoutMs: 2000 }
+  const [i, nextLoad] = useState<number>(0)
+  const [hasMore, setHasMore] = useState<boolean>(true)
+  const LoadLength: number = 20
+
+  // displaying loading animation up to 1 sec before fetching next API response
+  const SUSPENSE_CONFIG: any = { timeoutMs: 1000 }
   const [startTransition, isPending] = React.unstable_useTransition(
     SUSPENSE_CONFIG,
   )
+  const StoryIds: number[] = useStories(
+    `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`,
+  )
+  const LoadMore = () => {
+    startTransition(() => {
+      nextLoad((i: number) => i + 1)
+    })
+    // finish loading when all stories are loaded for the moment
+    if (StoryIds.slice(0, i * LoadLength).length < i * LoadLength) {
+      setHasMore(false)
+    }
+  }
 
   return (
     <Main>
-      <StoriesContainer>
-        {StoryIds.slice(0, (i + 1) * LoadLength).map(
-          (id: number, index: number) => (
-            <Story index={index + 1} id={id} />
-          ),
-        )}
-      </StoriesContainer>
-      <LoadButton onClick={LoadClick} disabled={isPending}>
-        {isPending ? 'Loading ...' : 'Load More'}
-      </LoadButton>
+      <InfiniteScroll
+        loadMore={LoadMore}
+        hasMore={hasMore}
+        initialLoad={false}
+        loader={<div key={0}>{isPending ? <Loading /> : <Loaded />}</div>}
+      >
+        <StoriesContainer>
+          {StoryIds.slice(0, (i + 1) * LoadLength).map(
+            (id: number, index: number) => (
+              <Suspense fallback={<Loading />} key={index}>
+                <Story index={index + 1} id={id} />
+              </Suspense>
+            ),
+          )}
+        </StoriesContainer>
+      </InfiniteScroll>
+      {hasMore ? null : (
+        <BottomBox>
+          <EndMessage>That Is All</EndMessage>
+        </BottomBox>
+      )}
     </Main>
   )
 }

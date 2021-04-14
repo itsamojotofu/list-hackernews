@@ -1,10 +1,9 @@
 import React, { lazy, Suspense, useState } from 'react'
 import styled from 'styled-components'
 import useStories from '../request'
-import Loading from './Loader'
 import InfiniteScroll from 'react-infinite-scroller'
-import { IconContext } from 'react-icons'
-import { CgLoadbar } from 'react-icons/cg'
+import Loading from './Loading'
+import Loaded from './Loaded'
 
 // await loading stories for 0.5 seconds to make the workings of Suspense be visible.
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -27,7 +26,7 @@ const Stories = () => {
   const [hasMore, setHasMore] = useState<boolean>(true)
   const LoadLength: number = 20
 
-  //
+  // displaying loading animation up to 1 sec before fetching next API response
   const SUSPENSE_CONFIG: any = { timeoutMs: 1000 }
   const [startTransition, isPending] = React.unstable_useTransition(
     SUSPENSE_CONFIG,
@@ -50,27 +49,7 @@ const Stories = () => {
         loadMore={LoadMore}
         hasMore={hasMore}
         initialLoad={false}
-        loader={
-          <div>
-            {isPending ? (
-              <Loading />
-            ) : (
-              <IconContext.Provider
-                value={{
-                  style: {
-                    height: '100',
-                    width: '100',
-                    color: '#00BFFF',
-                  },
-                }}
-              >
-                <div>
-                  <CgLoadbar />
-                </div>
-              </IconContext.Provider>
-            )}
-          </div>
-        }
+        loader={<div>{isPending ? <Loading /> : <Loaded />}</div>}
       >
         <StoriesContainer>
           {StoryIds.slice(0, (i + 1) * LoadLength).map(

@@ -86,6 +86,7 @@ interface Props {
   index: number
 }
 
+// converting timestamp to formatted Unix time
 const timestampConversion = (stamp: number) => {
   const date = new Date(stamp * 1000)
   const yyyy = `${date.getFullYear()}`
@@ -118,6 +119,7 @@ const Story = (props: Props) => {
   const { index, id } = props
   const [story, setStory] = React.useState<StoryData | null>(null)
 
+  // loading a story one by one with its id passed from top stories API
   React.useEffect(() => {
     const fetchStory = async (id: number) => {
       const response: Response = await fetch(

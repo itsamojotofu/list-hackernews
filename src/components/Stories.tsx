@@ -38,7 +38,8 @@ const Stories = () => {
     startTransition(() => {
       nextLoad((i: number) => i + 1)
     })
-    if (i === 23) {
+    // finish loading when all stories are loaded for the moment
+    if (StoryIds.slice(0, i * LoadLength).length < i * LoadLength) {
       setHasMore(false)
     }
   }

@@ -6,7 +6,7 @@ const LoaderContainer = styled.div`
   height: 100%;
   margin: 0 auto 5px;
 `
-
+// Loader for each story
 export const StoryLoader = () => {
   return (
     <LoaderContainer>

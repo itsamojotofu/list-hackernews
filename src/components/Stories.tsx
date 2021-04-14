@@ -21,7 +21,7 @@ const StoriesContainer = styled.div`
 `
 
 const Stories = () => {
-  const LoadLength: number = 100
+  const LoadLength: number = 10
   const [i, nextLoad] = useState<number>(0)
   const [hasMore, setHasMore] = useState(true)
   const StoryIds: number[] = useStories(
@@ -31,7 +31,7 @@ const Stories = () => {
     startTransition(() => {
       nextLoad((i: number) => i + 1)
     })
-    if (i == 4) {
+    if (i == 48) {
       setHasMore(false)
       return
     }

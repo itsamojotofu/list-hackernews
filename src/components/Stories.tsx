@@ -21,6 +21,17 @@ const StoriesContainer = styled.div`
   min-height: 100vh;
 `
 
+const BottomBox = styled.div`
+  height: 100px;
+  padding: 30px;
+`
+
+const EndMessage = styled.h1`
+  font-size: 2em;
+  font-weight: 500;
+  color: white;
+`
+
 const Stories = () => {
   const [i, nextLoad] = useState<number>(0)
   const [hasMore, setHasMore] = useState<boolean>(true)
@@ -62,6 +73,11 @@ const Stories = () => {
           )}
         </StoriesContainer>
       </InfiniteScroll>
+      {hasMore ? null : (
+        <BottomBox>
+          <EndMessage>That Is All</EndMessage>
+        </BottomBox>
+      )}
     </Main>
   )
 }

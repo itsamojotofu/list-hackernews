@@ -1,6 +1,6 @@
-### :newspaper: Overview
+## Overview
 
-#### This app is one of the simplest ways to check today's top stories from [Hacker News](https://news.ycombinator.com/).
+#### This app is one of the simplest ways to check today's top stories from [Hacker News](https://news.ycombinator.com/) :newspaper:
 
 Rather than open the original, why not look over news quickly and comfortably on this app?
 

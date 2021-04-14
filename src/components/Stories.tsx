@@ -49,12 +49,12 @@ const Stories = () => {
         loadMore={LoadMore}
         hasMore={hasMore}
         initialLoad={false}
-        loader={<div>{isPending ? <Loading /> : <Loaded />}</div>}
+        loader={<div key={0}>{isPending ? <Loading /> : <Loaded />}</div>}
       >
         <StoriesContainer>
           {StoryIds.slice(0, (i + 1) * LoadLength).map(
             (id: number, index: number) => (
-              <Suspense fallback={<Loading />}>
+              <Suspense fallback={<Loading />} key={index}>
                 <Story index={index + 1} id={id} />
               </Suspense>
             ),

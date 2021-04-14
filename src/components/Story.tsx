@@ -201,7 +201,7 @@ const Story = (props: Props) => {
         </StoryBody>
       ) : (
         <StoryBody>
-          <StoryLoader width="100%" height="100%" margin="0 auto 5px" />
+          <StoryLoader />
           <Adjuster />
         </StoryBody>
       )}

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Header from './components/Header'
 import Stories from './components/Stories'
+import ScrollUp from './components/ScrollUp'
 
 const Main = styled.main`
   text-align: center;
@@ -33,6 +34,7 @@ const App = () => {
       <Container>
         <Stories />
       </Container>
+      <ScrollUp />
     </Main>
   )
 }

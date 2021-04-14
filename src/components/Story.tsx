@@ -109,7 +109,7 @@ const timestampConversion = (stamp: number) => {
     'Dec',
   ]
   const ampm = HH < 12 ? 'AM' : 'PM'
-  const merigian = HH % 12 == 0 ? 12 : HH % 12
+  const merigian = HH % 12 === 0 ? 12 : HH % 12
 
   return ` ${merigian}:${mm} ${ampm} - ${dd} ${month_name[MM]}, ${yyyy}`
 }
@@ -135,7 +135,7 @@ const Story = (props: Props) => {
     }
 
     fetchStory(id)
-  }, [])
+  }, [id])
 
   return (
     <StoryContainer>

@@ -10,7 +10,7 @@ const useStories = (url: string) => {
     }
 
     getIds()
-  }, [])
+  }, [url])
 
   return ids
 }

@@ -26,6 +26,41 @@ Rather than open the original, why not look over news quickly and comfortably on
 
 #### [`Hacker News API`](https://github.com/HackerNews/API)
 
+- top stories
+
+"https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+
+```typescript
+// Example //
+[ 9129911, 9129199, 9127761, 9128141, 9128264, 9127792, 9129248, 9127092, 9128367, ..., 9038733 ]
+```
+
+- a story
+
+"https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty"
+
+```typescript
+// Example //
+[ 9129911, 9129199, 9127761, 9128141, 9128264, 9127792, 9129248, 9127092, 9128367, ..., 9038733 ]
+```
+
+"https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+
+```typescript
+// Example //
+{
+  "by" : "python_kiss",
+  "descendants" : 1,
+  "id" : 1123,
+  "kids" : [ 1193 ],
+  "score" : 6,
+  "time" : 1172467702,
+  "title" : "Too many companies are like bad marriages",
+  "type" : "story",
+  "url" : "http://headrush.typepad.com/creating_passionate_users/2007/02/too_many_compan.html"
+}
+```
+
 ## Check It on Local
 
 ```

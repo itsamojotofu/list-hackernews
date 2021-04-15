@@ -22,11 +22,24 @@ Rather than open the original, why not look over news quickly and comfortably on
 
 #### TypeScript x React
 
-
+- Hooks
 
-#### [`Hacker News API`](https://github.com/HackerNews/API)
+  - useState & useEffect
+  - lazy & Suspense
+  - useStories (Custom Hook)
+  - unstable_useTransition (Concurrent-mode)
 
-- top stories
+- Major Libraries
+  - styled-components (CSS in JS)
+  - react-icons
+  - react-loader-spinner
+  - react-scroll-to-top
+  - react-infinite-scroller
+  - react-loading-skeleton
+
+[`Hacker News API`](https://github.com/HackerNews/API)
+
+- top stories' IDs
 
 "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
 
@@ -35,7 +48,7 @@ Rather than open the original, why not look over news quickly and comfortably on
 [ 9129911, 9129199, 9127761, 9128141, 9128264, 9127792, 9129248, 9127092, 9128367, ..., 9038733 ]
 ```
 
-- a story
+- info about a story
 
 "https://hacker-news.firebaseio.com/v0/item/{id}.json?print=pretty"
 

@@ -26,6 +26,7 @@ Rather than open the original, why not look over news quickly and comfortably on
 
   - useState & useEffect
   - lazy & Suspense
+  - memo & useCallback
   - useStories (Custom Hook)
   - unstable_useTransition (Concurrent-mode)
 

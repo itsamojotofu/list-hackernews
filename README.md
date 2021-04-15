@@ -20,7 +20,11 @@ Rather than open the original, why not look over news quickly and comfortably on
 
 ## Tech Stack
 
-APIs
+##### TypeScript x React
+
+
+
+### [`Hacker News API`](https://github.com/HackerNews/API)
 
 ## Check It on Local
 
@@ -30,11 +34,6 @@ $ cd wp-frontend
 $ npm install
 $ npm start
 ```
-
-## Supplementary information
-
-- Ruby 2.6.5
-- Ruby on Rails 6.0.3.4
 
 ## :copyright: License
 

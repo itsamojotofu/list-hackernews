@@ -1,11 +1,11 @@
-import React, { lazy, Suspense, useState } from 'react'
+import React, { lazy, Suspense, useState, useCallback } from 'react'
 import styled from 'styled-components'
 import useStories from '../request'
 import InfiniteScroll from 'react-infinite-scroller'
 import Loading from './Loading'
 import Loaded from './Loaded'
 
-// await loading stories for 0.5 seconds to make the workings of Suspense be visible.
+// Demo: await loading stories for 0.5 seconds to make the workings of Suspense be visible.
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 const Story = lazy(() => sleep(500).then(() => import('./Story')))
 
@@ -45,7 +45,8 @@ const Stories = () => {
   const StoryIds: number[] = useStories(
     `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`,
   )
-  const LoadMore = () => {
+
+  const LoadMore = useCallback(() => {
     startTransition(() => {
       nextLoad((i: number) => i + 1)
     })
@@ -53,7 +54,7 @@ const Stories = () => {
     if (StoryIds.slice(0, i * LoadLength).length < i * LoadLength) {
       setHasMore(false)
     }
-  }
+  }, [i])
 
   return (
     <Main>

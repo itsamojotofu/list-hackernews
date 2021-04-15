@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
 import StoryLoader from './StoryLoader'
 import { IconContext } from 'react-icons'
@@ -115,7 +115,7 @@ const timestampConversion = (stamp: number) => {
   return ` ${merigian}:${mm} ${ampm} - ${dd} ${month_name[MM]}, ${yyyy}`
 }
 
-const Story = (props: Props) => {
+const Story = memo((props: Props) => {
   const { index, id } = props
   const [story, setStory] = React.useState<StoryData | null>(null)
 
@@ -209,6 +209,6 @@ const Story = (props: Props) => {
       )}
     </StoryContainer>
   )
-}
+})
 
 export default Story

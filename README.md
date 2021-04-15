@@ -37,14 +37,7 @@ Rather than open the original, why not look over news quickly and comfortably on
 
 - a story
 
-"https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty"
-
-```typescript
-// Example //
-[ 9129911, 9129199, 9127761, 9128141, 9128264, 9127792, 9129248, 9127092, 9128367, ..., 9038733 ]
-```
-
-"https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+"https://hacker-news.firebaseio.com/v0/item/{id}.json?print=pretty"
 
 ```typescript
 // Example //

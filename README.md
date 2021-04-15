@@ -16,7 +16,7 @@ Rather than open the original, why not look over news quickly and comfortably on
 
 | Bottom                                                                                                           |
 | ---------------------------------------------------------------------------------------------------------------- |
-| ![Bottom](https://user-images.githubusercontent.com/74521093/114795315-39e18380-9dc9-11eb-821a-8e339eab1c7c.png) |
+| ![Bottom](https://user-images.githubusercontent.com/74521093/114796392-ca20c800-9dcb-11eb-8dd4-76d115accc1b.png) |
 
 ## Tech Stack
 

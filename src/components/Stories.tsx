@@ -46,6 +46,7 @@ const Stories = () => {
     `https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`,
   )
 
+  // improve performance of loading new stories
   const LoadMore = useCallback(() => {
     startTransition(() => {
       nextLoad((i: number) => i + 1)

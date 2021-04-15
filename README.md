@@ -20,11 +20,11 @@ Rather than open the original, why not look over news quickly and comfortably on
 
 ## Tech Stack
 
-##### TypeScript x React
+#### TypeScript x React
 
 
 
-### [`Hacker News API`](https://github.com/HackerNews/API)
+#### [`Hacker News API`](https://github.com/HackerNews/API)
 
 ## Check It on Local
 
